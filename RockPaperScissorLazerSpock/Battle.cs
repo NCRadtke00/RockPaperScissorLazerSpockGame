@@ -9,17 +9,22 @@ namespace RockPaperScissorLazerSpock
 {
     class Battle
     {
+        Player playerOne;
+        Player playerTwo;
+        Computer computer;
         int playerOneScore;
         int playerTwoScore;
+        int computerScore;
         Random rand;
 
         public Battle()
         {
             playerOneScore = 0;
             playerTwoScore = 0;
+            computerScore = 0;
             rand = new Random();
 
-
+            Console.WriteLine("-------------------------------------");
             Console.WriteLine("Do we have one person playing or two?");
             Console.WriteLine("-------------------------------------");
             Console.WriteLine("-------------- ( 1 ) ----------------");
@@ -29,148 +34,108 @@ namespace RockPaperScissorLazerSpock
             string playerResult = Console.ReadLine();
             if (playerResult == "1")
             {
-                RunSinglePlayerMode();
+                playerOne = new Player();
+                playerTwo = new Player();
+                while (playerOneScore < 2 && playerTwoScore < 2)
+                {
+                    int playerOneGesture = playerOne.PickGesture();
+                    int playerTwoGesture = Player.PickGesture();
+                    CompareGestures(playerOneGesture, playerTwoGesture);
+                }
             }
             else if (playerResult == "2")
             {
-                RunTwoPlayerMode();
+                playerOne = new Player();
+                computer = new Computer();
+                while (playerOneScore < 2 && computerScore < 2)
+                {
+                    int playerOneGester = playerOne.PickGesture();
+                    int playerTwoGester = playerTwo.PickGesture();
+                    CompareGestures(playerOne.gesture, playerTwo.gesture);
+                }
             }
-        }
-        public void RunSinglePlayerMode()
-        {
 
         }
-        public string SetPlayerGesture(string gesture)
-        {
 
-        }
-        public string SetComputerGesture(string playerTwoGesture)
-        {
-            if (playerTwo = true)
-            {
-                //same guts as SetPlayerOneGesture
-            }
-            else
-            {
-                //return rand.Next(Gestures.moves);
-            }
-        }
-        public void PickGesture(string gesture)
-        {
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("-------------------------   Which move would you like to use first?   ----------------------------------");
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("------------------------------   ( 1 ) Rock               ----------------------------------------------");
-            Console.WriteLine("------------------------------       ( 2 ) Paper          ----------------------------------------------");
-            Console.WriteLine("------------------------------           ( 3 ) Scissors   ----------------------------------------------");
-            Console.WriteLine("------------------------------       ( 4 ) Lizard         ----------------------------------------------");
-            Console.WriteLine("------------------------------   ( 5 ) Spock              ----------------------------------------------");
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("--------------------------------------------------------------------------------------------------------");
-            string output = Console.ReadLine();
-            if (output == "1")
-            {
-                //rock
-            }
-            else if (output == "2")
-            {
-                //paper
-            }
-            else if (output == "3")
-            {
-                //scissors
-            }
-            else if (output == "4")
-            {
-                //lizard
-            }
-            else if (output == "5")
-            {
-                //spock
-            }
-            else
-            {
-                Console.WriteLine("You must make a move!");
-            }
-        }
-        public void RunTwoPlayerMode()
-        {
 
-        }
         public void CompareGestures()
         {
-            if (playerOneGesture == playerTwoGesture)
+            if (playerOne.gesture == playerTwo.gesture)
             {
                 Console.WriteLine("Draw, pick new gestures!");
             }
-            else if (playerOneGesture > playerTwoGesture)
+            else if (playerOne.gesture == "rock")
             {
-                Console.WriteLine($"Player 1 picked: {playerOneGesture}. Player 2 picked: {playerTwoGesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
-                playerOneScore++;
-                Console.WriteLine("Player one out rolled player two!");
+                if (playerTwo.gesture == "scissors" || playerTwo.gesture == "lizard")
+                {
+                    playerOneScore++;
+                    Console.WriteLine($"Player 1 picked: {playerOne.gesture}. Player 2 picked: {playerTwo.gesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
+                }
+                else
+                {
+                    playerTwoScore++;
+                }
             }
-            else
+            else if (playerOne.gesture == "scissors")
             {
-                Console.WriteLine($"Player 2 picked: {playerTwoGesture}. Player 1 picked: {playerOneGesture}. Player 2 score is currently: {playerTwoScore}. Player 1 score is currently: {playerOneScore}.");
-                playerTwoScore++;
-                Console.WriteLine("Player two out rolled player one!");
+                if (playerTwo.gesture == "paper" || playerTwo.gesture == "lizard")
+                { 
+                    playerOneScore++;
+                Console.WriteLine($"Player 1 picked: {playerOne.gesture}. Player 2 picked: {playerTwo.gesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
+                }
+                else
+                {
+                    playerTwoScore++;
+                }
             }
-        }
-        public void RulesOfBattle(string rock, string scissors, string paper, string lizard, string spock)
-        {
-            if (rock == rock || lizard == lizard || paper == paper || scissors == scissors || spock == spock)
+            else if (playerOne.gesture == "paper")
             {
-                Console.WriteLine("Draw Try again!");
+                if (playerTwo.gesture == "rock" || playerTwo.gesture == "spock")
+                {
+                    playerOneScore++;
+                    Console.WriteLine($"Player 1 picked: {playerOne.gesture}. Player 2 picked: {playerTwo.gesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
+                }
+                else
+                {
+                    playerTwoScore++;
+                }
             }
-            else if (rock > scissors)
+            else if (playerOne.gesture == "lizard")
             {
-                Console.WriteLine("Rock crushes Scissors");
+                if (playerTwo.gesture == "spock" || playerTwo.gesture == "paper")
+                {
+                    playerOneScore++;
+                    Console.WriteLine($"Player 1 picked: {playerOne.gesture}. Player 2 picked: {playerTwo.gesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
+                }
+                else
+                {
+                    playerTwoScore++;
+                }
             }
-            else if (scissors > paper)
+            else if (playerOne.gesture == "spock")
             {
-                Console.WriteLine("Scissors cuts Paper!");
-            }
-            else if (paper > rock)
-            {
-                Console.WriteLine("Paper covers Rock!");
-            }
-            else if (rock > lizard)
-            {
-                Console.WriteLine("Rock crushes Lizard");
-            }
-            else if (lizard > spock)
-            {
-                Console.WriteLine("Lizard poisons Spock");
-            }
-            else if (spock > scissors)
-            {
-                Console.WriteLine("Spock smashes Scissors");
-            }
-            else if (scissors > lizard)
-            {
-                Console.WriteLine("Scissors decapitates Lizard");
-            }
-            else if (lizard > paper)
-            {
-                Console.WriteLine("Lizard eats Paper");
-            }
-            else if (paper > spock)
-            {
-                Console.WriteLine("Paper disproves Spock");
-            }
-            else if (spock > rock)
-            {
-                Console.WriteLine("Spock vaporizes Rock");
+                if (playerTwo.gesture == "scissors" || playerTwo.gesture == "rock")
+                {
+                    playerOneScore++;
+                    Console.WriteLine($"Player 1 picked: {playerOne.gesture}. Player 2 picked: {playerTwo.gesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
+                }
+                else
+                {
+                    playerTwoScore++;
+                }
             }
 
         }
         public void DisplayWinner()
         {
-                //best of 3
+            if (playerOneScore > playerTwoScore)
+            {
+                Console.WriteLine("Player 1 wins!");
+            }
+            else
+            {
+                Console.WriteLine("Player 2 wins!");
+            }
         }
     }
-
 }   
