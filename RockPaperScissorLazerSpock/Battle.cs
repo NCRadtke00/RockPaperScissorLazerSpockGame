@@ -9,8 +9,16 @@ namespace RockPaperScissorLazerSpock
 {
     class Battle
     {
+        int playerOneScore;
+        int playerTwoScore;
+        Random rand;
+
         public Battle()
         {
+            playerOneScore = 0;
+            playerTwoScore = 0;
+            rand = new Random();
+
 
             Console.WriteLine("Do we have one person playing or two?");
             Console.WriteLine("-------------------------------------");
@@ -21,8 +29,8 @@ namespace RockPaperScissorLazerSpock
             string playerResult = Console.ReadLine();
             if (playerResult == "1")
             {
-                RunSinglePlayerMode()
-                }
+                RunSinglePlayerMode();
+            }
             else if (playerResult == "2")
             {
                 RunTwoPlayerMode();
@@ -32,19 +40,19 @@ namespace RockPaperScissorLazerSpock
         {
 
         }
-        public string SetPlayerOneGesture(string gesture)
+        public string SetPlayerGesture(string gesture)
         {
 
         }
-        public string SetPlayerTwoGesture(string playerTwoGesture)
+        public string SetComputerGesture(string playerTwoGesture)
         {
             if (playerTwo = true)
             {
                 //same guts as SetPlayerOneGesture
             }
-             else
+            else
             {
-                return rand.Next(Gesture.moves[0]);
+                //return rand.Next(Gestures.moves);
             }
         }
         public void PickGesture(string gesture)
@@ -65,27 +73,27 @@ namespace RockPaperScissorLazerSpock
             string output = Console.ReadLine();
             if (output == "1")
             {
-
+                //rock
             }
             else if (output == "2")
             {
-
+                //paper
             }
             else if (output == "3")
             {
-
+                //scissors
             }
             else if (output == "4")
             {
-
+                //lizard
             }
             else if (output == "5")
             {
-
+                //spock
             }
             else
             {
-                PickAttackMove();
+                Console.WriteLine("You must make a move!");
             }
         }
         public void RunTwoPlayerMode()
