@@ -11,7 +11,7 @@ namespace RockPaperScissorLazerSpock
         public string rock;
         public string paper;
         public string scissors;
-        public string laszer;
+        public string lizard;
         public string spock;
         public List<Gestures> moves;
         public Gestures()
