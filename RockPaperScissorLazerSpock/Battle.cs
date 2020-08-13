@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorLazerSpock
 {
-    class Program
+    class Battle
     {
-        static void Main(string[] args)
+        public Battle()
         {
-            Battle battle = new Battle();
+
         }
     }
 }
