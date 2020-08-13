@@ -32,7 +32,22 @@ namespace RockPaperScissorLazerSpock
         {
 
         }
-        public void PickAttackMove()
+        public string SetPlayerOneGesture(string gesture)
+        {
+
+        }
+        public string SetPlayerTwoGesture(string playerTwoGesture)
+        {
+            if (playerTwo = true)
+            {
+                //same guts as SetPlayerOneGesture
+            }
+             else
+            {
+                return rand.Next(Gesture.moves[0]);
+            }
+        }
+        public void PickGesture(string gesture)
         {
             Console.WriteLine("--------------------------------------------------------------------------------------------------------");
             Console.WriteLine("--------------------------------------------------------------------------------------------------------");
@@ -77,9 +92,32 @@ namespace RockPaperScissorLazerSpock
         {
 
         }
-        public void CompareMoves()
+        public void CompareGestures()
         {
-            if (rock > scissors)
+            if (playerOneGesture == playerTwoGesture)
+            {
+                Console.WriteLine("Draw, pick new gestures!");
+            }
+            else if (playerOneGesture > playerTwoGesture)
+            {
+                Console.WriteLine($"Player 1 picked: {playerOneGesture}. Player 2 picked: {playerTwoGesture}. Player 1 score is currently: {playerOneScore}. Player 2 score is currently: {playerTwoScore}.");
+                playerOneScore++;
+                Console.WriteLine("Player one out rolled player two!");
+            }
+            else
+            {
+                Console.WriteLine($"Player 2 picked: {playerTwoGesture}. Player 1 picked: {playerOneGesture}. Player 2 score is currently: {playerTwoScore}. Player 1 score is currently: {playerOneScore}.");
+                playerTwoScore++;
+                Console.WriteLine("Player two out rolled player one!");
+            }
+        }
+        public void RulesOfBattle(string rock, string scissors, string paper, string lizard, string spock)
+        {
+            if (rock == rock || lizard == lizard || paper == paper || scissors == scissors || spock == spock)
+            {
+                Console.WriteLine("Draw Try again!");
+            }
+            else if (rock > scissors)
             {
                 Console.WriteLine("Rock crushes Scissors");
             }
@@ -91,38 +129,35 @@ namespace RockPaperScissorLazerSpock
             {
                 Console.WriteLine("Paper covers Rock!");
             }
-            else if (Rock > Lizard)
+            else if (rock > lizard)
             {
                 Console.WriteLine("Rock crushes Lizard");
             }
-            else if (Lizard > Spock)
+            else if (lizard > spock)
             {
                 Console.WriteLine("Lizard poisons Spock");
             }
-            else if (Spock > Scissors)
+            else if (spock > scissors)
             {
                 Console.WriteLine("Spock smashes Scissors");
             }
-            else if (Scissors > Lizard)
+            else if (scissors > lizard)
             {
                 Console.WriteLine("Scissors decapitates Lizard");
             }
-            else if (Lizard > Paper)
+            else if (lizard > paper)
             {
                 Console.WriteLine("Lizard eats Paper");
             }
-            else if (Paper > Spock)
+            else if (paper > spock)
             {
                 Console.WriteLine("Paper disproves Spock");
             }
-            else if (Spock > Rock)
+            else if (spock > rock)
             {
                 Console.WriteLine("Spock vaporizes Rock");
             }
-            else
-            {
-                CompareMoves();
-            }
+
         }
         public void DisplayWinner()
         {

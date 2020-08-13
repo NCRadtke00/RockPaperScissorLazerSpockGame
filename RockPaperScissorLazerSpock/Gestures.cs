@@ -8,15 +8,15 @@ namespace RockPaperScissorLazerSpock
 {
     class Gestures
     {
-        public string rock;
-        public string paper;
-        public string scissors;
-        public string lizard;
-        public string spock;
-        public List<Gestures> moves;
+        public List<Gesture> moves;
         public Gestures()
         {
-
+            moves = new List<Gesture>();
+            moves.Add(new Gesture("rock"));
+            moves.Add(new Gesture("paper"));
+            moves.Add(new Gesture("scissors"));
+            moves.Add(new Gesture("lizard"));
+            moves.Add(new Gesture("spock"));
         }
     }
 }
